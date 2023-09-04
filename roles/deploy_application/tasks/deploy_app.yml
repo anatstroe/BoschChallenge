@@ -5,6 +5,10 @@
     api_version: v1
     kind: Namespace
     state: present
+
+- command: mkdir -p "{{ role_path }}/files"
+  become: yes
+
 - name: jinja2
   template:
     src: "{{ role_path }}/templates/app-deployment.yaml.j2"
