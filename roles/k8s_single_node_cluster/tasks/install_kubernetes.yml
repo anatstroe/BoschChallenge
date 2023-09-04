@@ -32,7 +32,7 @@
     name: "{{ item }}"
     state: present
   loop:
-    - python-pip
+    # - python-pip
     - python3-pip
   become: true
 
