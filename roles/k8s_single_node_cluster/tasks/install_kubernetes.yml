@@ -26,3 +26,9 @@
     - kubelet
     - kubectl
   become: yes
+
+- name: Install the kubernetes Python library
+  pip:
+    name: kubernetes
+    executable: /usr/bin/python3  # Optional: Specify the Python interpreter if needed
+  become: yes
