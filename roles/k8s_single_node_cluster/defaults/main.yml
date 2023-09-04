@@ -12,3 +12,5 @@ kube_config_file: "{{ kube_config_dir }}/admin.conf"
 
 # Default paths for storing temporary files
 temp_directory: "/tmp"
+
+kubernetes_api_server = "https://{{ ansible_default_ipv4.address }}:6443"
