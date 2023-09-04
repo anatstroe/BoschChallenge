@@ -27,6 +27,13 @@
     - kubectl
   become: yes
 
+- name: Install Python pip
+  apt: name= {{ item }} update_cache=true state=present force_apt_get=yes
+  with_items:
+  - python-pip
+  - python3-pip
+  become: true
+
 - name: Install kubernetes python package
   ansible.builtin.pip:
     name: kubernetes
