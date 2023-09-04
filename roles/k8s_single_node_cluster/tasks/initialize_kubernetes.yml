@@ -12,7 +12,7 @@
   loop:
     - mkdir -p $HOME/.kube
     - cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-    - echo "$HOME"
+    - echo "$HOME" > /tmp/home/file.yml
     # - chown $(id -u):$(id -g) $HOME/.kube/config
   when: kubeadm_init_output.rc == 0
 
