@@ -4,8 +4,16 @@
 Create deployment scripts using Ansible to deploy an application to some target servers (or virtual machines). This application contains two services: the main application and a database. The database is a MySQL database. The application is a simple web application that connects to the database and displays some information from the database. The application is packaged as a Docker container. The database is also packaged as a Docker container. The application and database containers are deployed to the target servers using Kubernetes.
 
 ## Prerequisites
-- A virtual machine or server running a Linux distribution (Ubuntu, CentOS, etc.)
-- Ansible installed on the virtual machine or server
+* A virtual machine or server running a Linux distribution (Ubuntu, CentOS, etc.)
+* Ansible installed on the virtual machine or server
+    * ```chmod +x install_ansible.sh``` to make the script executable
+    * run ```ansibleinstall.sh``` to install Ansible
+    ```bash
+    sudo ./install_ansible.sh
+    ```
+
+
+
 
 
 ## Usage
