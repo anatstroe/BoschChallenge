@@ -18,7 +18,7 @@
   k8s:
     name: app-deployment
     namespace: "{{ namespace }}"
-    definition: "{{ role_path }}/templates/app-deployment.yaml"
+    definition: "{{ role_path }}/files/app-deployment.yaml"
     state: present
 
 - name: Deploy MySQL Deployment
