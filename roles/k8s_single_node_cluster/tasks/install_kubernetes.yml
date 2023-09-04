@@ -38,7 +38,8 @@
 
 - name: Install kubernetes python package
   ansible.builtin.pip:
-    name:
+    name: "{{ item }}"
+  loop:
     - kubernetes
     - openshift
     - pyyaml
