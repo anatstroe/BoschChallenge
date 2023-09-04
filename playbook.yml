@@ -2,15 +2,7 @@
 - name: Kubernetes Deployment Playbook
   hosts: localhost
   become: yes
-  tasks:
-  - name: Install Docker and Kubernetes Components and Initialize Kubernetes Cluster
-    roles:
-      - k8s_single_node_cluster
-
-  - name: Build Docker Image for My Application
-    roles:
-      - build_docker_images
-
-  - name: Deploy Application and expose it with Ingress Controller
-    roles:
-      - deploy_application
+  roles:
+    - k8s_single_node_cluster
+    - build_docker_images
+    - deploy_application
