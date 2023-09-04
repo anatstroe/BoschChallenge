@@ -12,5 +12,13 @@
   loop:
     - mkdir -p $HOME/.kube
     - cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
-    - chown $(id -u):$(id -g) $HOME/.kube/config
+    # - chown $(id -u):$(id -g) $HOME/.kube/config
+  when: kubeadm_init_output.rc == 0
+
+- name: Change ownership of Kubernetes config file
+  file:
+    path: "{{ ansible_env.HOME }}/.kube/config"
+    owner: "{{ ansible_env.USER }}"
+    group: "{{ ansible_env.USER }}"
+  become: yes
   when: kubeadm_init_output.rc == 0
