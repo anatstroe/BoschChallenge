@@ -7,15 +7,15 @@ spec:
   replicas: "{{ app_replica_count }}"
   selector:
     matchLabels:
-      "{{ app_labels.key }}: {{ app_labels.value }}"
+      "{{ app_labels.key }}": "{{ app_labels.value }}"
   template:
     metadata:
       labels:
-        "{{ app_labels.key }}: {{ app_labels.value }}"
+        "{{ app_labels.key }}": "{{ app_labels.value }}"
     spec:
       containers:
-        - name: "{{ app_name }}
-          image: "{{ docker_image_name }}: {{ docker_image_tag }}"
+        - name: "{{ app_name }}"
+          image: "{{ docker_image_name }}:{{ docker_image_tag }}"
           ports:
             - containerPort: 3000
           env:
@@ -36,7 +36,7 @@ metadata:
   namespace: "{{ namespace }}"
 spec:
   selector:
-    "{{ app_labels.key }}: {{ app_labels.value }}"
+    "{{ app_labels.key }}": "{{ app_labels.value }}"
   ports:
     - protocol: TCP
       port: 3000
