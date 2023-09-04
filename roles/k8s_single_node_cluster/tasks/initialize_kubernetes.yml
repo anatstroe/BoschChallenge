@@ -16,6 +16,11 @@
     # - chown $(id -u):$(id -g) $HOME/.kube/config
   when: kubeadm_init_output.rc == 0
 
+- debug:
+    msg: "{{ ansible_env.HOME }}"
+- debug:
+    msg: "{{ ansible_env.USER }}"
+
 - name: Change ownership of Kubernetes config file
   file:
     path: "{{ ansible_env.HOME }}/.kube/config"
