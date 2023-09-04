@@ -1,42 +1,42 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: "{{ app_name }}"
-  namespace: "{{ namespace }}"
+  name: {{ app_name }}
+  namespace: {{ namespace }}
 spec:
-  replicas: "{{ app_replica_count }}"
+  replicas: {{ app_replica_count }}
   selector:
     matchLabels:
-      "{{ app_labels.key }}": "{{ app_labels.value }}"
+      {{ app_labels.key }}: {{ app_labels.value }}
   template:
     metadata:
       labels:
-        "{{ app_labels.key }}": "{{ app_labels.value }}"
+        {{ app_labels.key }}: {{ app_labels.value }}
     spec:
       containers:
-        - name: "{{ app_name }}"
-          image: "{{ docker_image_name }}:{{ docker_image_tag }}"
+        - name: {{ app_name }}
+          image: {{ docker_image_name }}:{{ docker_image_tag }}
           ports:
             - containerPort: 3000
           env:
             - name: MYSQL_HOST
-              value: "{{ sql_service_name }}"  # Use the service name or pod IP of the MySQL container
+              value: {{ sql_service_name }}  # Use the service name or pod IP of the MySQL container
             - name: MYSQL_USER
               value: root
             - name: MYSQL_PASSWORD
-              value: "{{ mysql_root_password }}"
+              value: {{ mysql_root_password }}
             - name: MYSQL_DB
-              value: "{{ mysql_database }}"
+              value: {{ mysql_database }}
 
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: "{{ app_service_name }}"
-  namespace: "{{ namespace }}"
+  name: {{ app_service_name }}
+  namespace: {{ namespace }}
 spec:
   selector:
-    "{{ app_labels.key }}": "{{ app_labels.value }}"
+    {{ app_labels.key }}: {{ app_labels.value }}
   ports:
     - protocol: TCP
       port: 3000
