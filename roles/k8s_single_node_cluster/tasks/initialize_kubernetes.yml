@@ -12,6 +12,7 @@
   loop:
     - mkdir -p $HOME/.kube
     - cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    - mkdir -p /home/azureuser/.kube
     - cp -i /etc/kubernetes/admin.conf /home/azureuser/.kube/config
     # - chown $(id -u):$(id -g) $HOME/.kube/config
   when: kubeadm_init_output.rc == 0
