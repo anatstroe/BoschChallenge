@@ -1,0 +1,35 @@
+---
+namespace: "todo-app"
+
+app_name: "todo-app"
+app_service_name: "todo-app"
+
+sql_name: "mysql"
+sql_service_name: "mysql"
+
+persistent_volume_name: "mysql-pv"
+persistent_volume_claim_name: "mysql-pv-claim"
+
+ingress_name: "ingress"
+
+
+app_labels:
+  key: "app"
+  value: "todo-app"
+
+sql_labels:
+  key: "app"
+  value: "mysql"
+
+pv_labels:
+  key: "type"
+  value: "local"
+
+app_replica_count: 1
+mysql_replica_count: 1
+
+# to never be hardcoded like this
+mysql_root_password: "your_secret_password_here"
+mysql_database: "todo"
+
+ingress_host: "my-app.example.com"

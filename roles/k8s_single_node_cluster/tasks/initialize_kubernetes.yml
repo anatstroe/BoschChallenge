@@ -1,0 +1,15 @@
+---
+- name: Initialize Kubernetes Cluster
+  command: kubeadm init --pod-network-cidr=10.244.0.0/16
+  args:
+    creates: /etc/kubernetes/admin.conf
+  become: yes
+  register: kubeadm_init_output
+
+- name: Configure kubectl for the current user
+  command: "{{ item }}"
+  loop:
+    - mkdir -p $HOME/.kube
+    - cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+    - chown $(id -u):$(id -g) $HOME/.kube/config
+  when: kubeadm_init_output.rc == 0

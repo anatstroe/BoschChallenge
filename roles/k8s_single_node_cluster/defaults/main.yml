@@ -1,0 +1,14 @@
+---
+# Default values for Kubernetes installation
+kubernetes_version: "1.22.0"
+docker_version: "20.10"
+
+# Default network configuration for Kubernetes
+pod_network_cidr: "10.244.0.0/16"
+
+# Default paths for Kubernetes configuration files
+kube_config_dir: "/etc/kubernetes"
+kube_config_file: "{{ kube_config_dir }}/admin.conf"
+
+# Default paths for storing temporary files
+temp_directory: "/tmp"

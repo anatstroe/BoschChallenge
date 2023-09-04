@@ -1,0 +1,7 @@
+---
+- name: Build Docker Image for My Application
+  docker_image:
+    name: "{{ docker_image_name }}:{{ docker_image_tag }}"
+    path: "{{ docker_build_context }}"
+    dockerfile: "{{ dockerfile_path }}"
+  become: yes

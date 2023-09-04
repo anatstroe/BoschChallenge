@@ -1,0 +1,6 @@
+---
+- name: Deploy Application to Kubernetes Cluster
+  import_tasks: deploy_app.yml
+
+- name: Expose Application with Ingress Controller
+  import_tasks: deploy_ingress.yml

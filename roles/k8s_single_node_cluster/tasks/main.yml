@@ -1,0 +1,13 @@
+---
+- name: Install Kubernetes
+  include_tasks: install_kubernetes.yml
+
+- name: Initialize Kubernetes Cluster
+  include_tasks: initialize_kubernetes.yml
+
+- name: Generate Kubeconfig
+  template:
+    src: kubeconfig.j2
+    dest: /etc/kubernetes/admin.conf
+    mode: 0600
+  notify: Reboot if necessary

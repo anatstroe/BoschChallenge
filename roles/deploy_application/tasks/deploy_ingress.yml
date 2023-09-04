@@ -1,0 +1,7 @@
+- name: Deploy Ingress for Application
+  k8s:
+    name: {{ ingress_name }}
+    namespace: "{{ namespace }}"
+    definition: "{{ role_path }}/templates/ingress.yaml"
+    state: present
+  when: ingress_host is defined
