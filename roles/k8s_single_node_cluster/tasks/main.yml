@@ -1,5 +1,5 @@
 ---
-- name: Install Kubernetes
+- name: Install Kubernetes and Docker
   include_tasks: install_kubernetes.yml
 
 - name: Initialize Kubernetes Cluster
