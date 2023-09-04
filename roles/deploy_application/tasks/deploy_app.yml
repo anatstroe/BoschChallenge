@@ -5,12 +5,16 @@
     api_version: v1
     kind: Namespace
     state: present
+- name: jinja2
+  template:
+    src: "{{ role_path }}/templates/app-deployment.yaml.j2"
+    dest: "{{ role_path }}/files/app-deployment.yaml"
 
 - name: Deploy Application Deployment
   k8s:
     name: app-deployment
     namespace: "{{ namespace }}"
-    definition: "{{ role_path }}/templates/app-deployment.yaml.j2"
+    definition: "{{ role_path }}/templates/app-deployment.yaml"
     state: present
 
 - name: Deploy MySQL Deployment
