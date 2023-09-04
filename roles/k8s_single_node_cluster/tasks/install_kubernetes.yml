@@ -28,10 +28,12 @@
   become: yes
 
 - name: Install Python pip
-  apt: name= {{ item }} update_cache=true state=present force_apt_get=yes
-  with_items:
-  - python-pip
-  - python3-pip
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - python-pip
+    - python3-pip
   become: true
 
 - name: Install kubernetes python package
