@@ -3,5 +3,5 @@ localhost ansible_connection=local
 ---
 all:
   vars:
-    docker_image_name: "todo-app"
+    docker_image_name: "anatstroe/todo-app"
     docker_image_tag: "latest"

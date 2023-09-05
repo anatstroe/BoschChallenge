@@ -29,7 +29,7 @@ app_replica_count: 1
 mysql_replica_count: 1
 
 # to never be hardcoded like this
-mysql_root_password: "your_secret_password_here"
+mysql_root_password: "Password!123"
 mysql_database: "todo"
 
-ingress_host: "my-app.example.com"
+ingress_host: "172.17.0.1:80"
