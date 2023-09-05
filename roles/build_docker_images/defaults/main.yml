@@ -1,4 +1,4 @@
 ---
-docker_image_name: "todo-app"
+docker_image_name: "anatstroe/todo-app"
 docker_image_tag: "latest"
 docker_build_context: "{{ role_path }}/files/getting-started-app"
