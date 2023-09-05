@@ -1,8 +1,9 @@
 # Ansible Playbook: Kubernetes Deployment
 
 ## Description
-Ansible Playbook to deploy and configure a Kubernetes cluster on a single node and deploy a simple web application to the cluster.
-Playboook tested on Ubuntu 20.04 LTS
+Ansible Playbook to deploy and configure a Kubernetes cluster on a single node and deploy a simple web application to the cluster.<br>
+Playboook tested on Ubuntu 20.04 LTS<br>
+The website can be accessed at http://boschdemoapp.switzerlandnorth.cloudapp.azure.com/
 
 
 ## Prerequisites
