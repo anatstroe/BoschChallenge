@@ -14,12 +14,19 @@
     src: "{{ role_path }}/templates/app-deployment.yaml.j2"
     dest: "{{ role_path }}/files/app-deployment.yaml"
 
-- name: Deploy Application Deployment
-  k8s:
-    name: app-deployment
-    namespace: "{{ namespace }}"
-    definition: "{{ role_path }}/files/app-deployment.yaml"
-    state: present
+# - name: Deploy Application Deployment
+#   k8s:
+#     name: app-deployment
+#     namespace: "{{ namespace }}"
+#     definition: "{{ role_path }}/files/app-deployment.yaml"
+#     state: present
+
+# debug message
+- debug:
+    msg: "Deploying application deployment"
+
+- command: kubectl apply -f "{{ role_path }}/files/app-deployment.yaml"
+  become: yes
 
 - name: Deploy MySQL Deployment
   k8s:
