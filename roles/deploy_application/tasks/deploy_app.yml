@@ -21,16 +21,15 @@
 #     definition: "{{ role_path }}/files/app-deployment.yaml"
 #     state: present
 
-# debug message
-- debug:
-    msg: "Deploying application deployment"
-
 - command: kubectl apply -f "{{ role_path }}/files/app-deployment.yaml"
   become: yes
 
-- name: Deploy MySQL Deployment
-  k8s:
-    name: mysql-deployment
-    namespace: "{{ namespace }}"
-    definition: "{{ role_path }}/templates/mysql-deployment.yaml.j2"
-    state: present
+- command: kubectl apply -f "{{ role_path }}/templates/mysql-deployment.yaml.j2"
+  become: yes
+
+# - name: Deploy MySQL Deployment
+#   k8s:
+#     name: mysql-deployment
+#     namespace: "{{ namespace }}"
+#     definition: "{{ role_path }}/templates/mysql-deployment.yaml.j2"
+#     state: present
