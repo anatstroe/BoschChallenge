@@ -5,7 +5,6 @@
     tag: "{{ docker_image_tag }}"
     build:
       path: "{{ docker_build_context }}"
-    dockerfile: "{{ dockerfile_path }}"
     source: build
   become: yes
 
