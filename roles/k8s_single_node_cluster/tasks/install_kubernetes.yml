@@ -34,6 +34,7 @@
   loop:
     # - python-pip
     - python3-pip
+    - python3-docker
   become: true
 
 - name: Install kubernetes python package
@@ -43,6 +44,3 @@
     - kubernetes
     - openshift
     - pyyaml
-
-- command: kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
-  become: yes
