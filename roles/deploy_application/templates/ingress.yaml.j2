@@ -2,18 +2,18 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   namespace: {{ app_namespace }}
-  name: "{{ ingress_name }}"
+  name: {{ ingress_name }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: "20.203.138.129:80/"
+    - host: "20.203.138.129"
       http:
         paths:
           - path: /
             pathType: Prefix
             backend:
               service:
-                name: "{{ app_service_name }}"
+                name: {{ app_service_name }}
                 port:
                   number: 80
