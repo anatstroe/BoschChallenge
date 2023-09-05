@@ -8,12 +8,9 @@
     source: build
   become: yes
 
-
-- name: Print Docker Image Build Output
-  debug:
-    var: command_output.stdout_lines
-
-# - name: output docker images
-#   command: docker images
-#   debug:
-#     var: command_output.stdout_lines
+- name: Tag and push to docker hub
+  community.docker.docker_image:
+    name: "{{ docker_image_name }}:{{ docker_image_tag }}"
+    repository: "{{ docker_image_name }}:{{ docker_image_tag }}"
+    push: true
+    source: local

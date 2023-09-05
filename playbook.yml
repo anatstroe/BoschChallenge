@@ -3,6 +3,6 @@
   hosts: localhost
   become: yes
   roles:
-    - k8s_single_node_cluster
-    - build_docker_images
+    # - k8s_single_node_cluster
+    # - build_docker_images
     - deploy_application

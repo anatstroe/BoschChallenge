@@ -17,11 +17,6 @@
     # - chown $(id -u):$(id -g) $HOME/.kube/config
   when: kubeadm_init_output.rc == 0
 
-- debug:
-    msg: "{{ ansible_env.HOME }}"
-- debug:
-    msg: "{{ ansible_env.USER }}"
-
 - name: Change ownership of Kubernetes config file
   file:
     path: "{{ ansible_env.HOME }}/.kube/config"
@@ -30,15 +25,20 @@
   become: yes
   when: kubeadm_init_output.rc == 0
 
-# - command: kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
-#   become: yes
-
-- command: kubectl label nodes boschvm1 haspublicip=true --overwrite
+- name: add label to node for public ip and untaint master node
+  command: "{{ item }}"
+  loop:
+  - kubectl taint nodes --all node-role.kubernetes.io/control-plane-
+  - kubectl label nodes "{{ node_name }}" haspublicip=true --overwrite
   become: yes
 
-# - command: kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.8.1/deploy/static/provider/cloud/deploy.yaml
-#   become: yes
+- command: kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+  become: yes
 
-- command: helm upgrade --install ingress-nginx ingress-nginx \
-  --repo https://kubernetes.github.io/ingress-nginx \
-  --namespace ingress-nginx --create-namespace
+- name: install ingress-nginx controller with helm
+  command: "{{ item }}"
+  loop:
+  - helm repo add nginx-stable https://helm.nginx.com/stable
+  - helm repo update
+  - helm upgrade --install nginx-ingress nginx-stable/nginx-ingress --set rbac.create=true
+  become: yes

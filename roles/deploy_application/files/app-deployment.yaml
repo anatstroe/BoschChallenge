@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-app
+  namespace: todo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo-app
+  template:
+    metadata:
+      labels:
+        app: todo-app
+    spec:
+      containers:
+        - name: todo-app
+          image: anatstroe/todo-app:latest
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MYSQL_HOST
+              value: mysql  # Use the service name or pod IP of the MySQL container
+            - name: MYSQL_USER
+              value: root
+            - name: MYSQL_PASSWORD
+              value: Password!123
+            - name: MYSQL_DB
+              value: todo
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: todo-app
+  namespace: todo-app
+spec:
+  selector:
+    app: todo-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP
