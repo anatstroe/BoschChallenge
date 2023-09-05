@@ -5,3 +5,8 @@
     path: "{{ docker_build_context }}"
     dockerfile: "{{ dockerfile_path }}"
   become: yes
+
+- name: output docker images
+  command: docker images
+  debug:
+    var: command_output.stdout_lines
