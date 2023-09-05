@@ -1,6 +1,6 @@
 ---
 - name: Build Docker Image for My Application
-  docker_image:
+  community.docker.docker_image:
     name: "{{ docker_image_name }}"
     build: "{{ docker_build_context }}"
     dockerfile: "{{ dockerfile_path }}"
