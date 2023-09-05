@@ -5,9 +5,5 @@
 - name: Initialize Kubernetes Cluster
   include_tasks: initialize_kubernetes.yml
 
-# - name: Generate Kubeconfig
-#   template:
-#     src: kubeconfig.j2
-#     dest: /etc/kubernetes/admin.conf
-#     mode: 0600
-#   notify: Reboot if necessary
+- name: Set-up Ingress Controller
+  include_tasks: ingress_set_up.yml

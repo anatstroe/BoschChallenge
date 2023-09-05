@@ -1,0 +1,15 @@
+---
+- name: Set-up Ingress Controller
+  command: "{{ item }}"
+  loop:
+    - git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v3.2.1
+    - cd kubernetes-ingress/deployments
+    - kubectl apply -f rbac
+    - kubectl apply -f ../examples/shared-examples/default-server-secret/default-server-secret.yaml
+    - kubectl apply -f common
+    - kubectl apply -f deployment
+    - kubectl apply -f service/appprotect-dos-arb-svc.yaml
+    - kubectl apply -f daemon-set/nginx-ingress.yaml
+    - kubectl create -f service/nodeport.yaml
+    - kubectl apply -f service/loadbalancer.yaml
+    - kubectl patch svc nginx-ingress -n nginx-ingress -p '{"spec":{"externalIPs":["http://20.203.206.162/"]}}'
