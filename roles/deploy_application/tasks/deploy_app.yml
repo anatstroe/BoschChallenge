@@ -6,15 +6,16 @@
     kind: Namespace
     state: present
 
-- command: mkdir -p "{{ role_path }}/files"
+- name: Create folder for files
+  command: mkdir -p "{{ role_path }}/files"
   become: yes
 
-- name: jinja2
+- name: App Deployment Yaml Template Creation
   template:
     src: "{{ role_path }}/templates/app-deployment.yaml.j2"
     dest: "{{ role_path }}/files/app-deployment.yaml"
 
-- name: jinja2
+- name: SQL Deployment Yaml Template Creation
   template:
     src: "{{ role_path }}/templates/mysql-deployment.yaml.j2"
     dest: "{{ role_path }}/files/mysql-deployment.yaml"
@@ -26,10 +27,12 @@
 #     definition: "{{ role_path }}/files/app-deployment.yaml"
 #     state: present
 
-- command: kubectl apply -f "{{ role_path }}/files/app-deployment.yaml"
+- name: Deploy Application Deployment
+  command: kubectl apply -f "{{ role_path }}/files/app-deployment.yaml"
   become: yes
 
-- command: kubectl apply -f "{{ role_path }}/files/mysql-deployment.yaml"
+- name: Deploy MySQL Deployment
+  command: kubectl apply -f "{{ role_path }}/files/mysql-deployment.yaml"
   become: yes
 
 # - name: Deploy MySQL Deployment
