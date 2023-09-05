@@ -2,14 +2,16 @@
 - name: Set-up Ingress Controller
   command: "{{ item }}"
   loop:
-    - git clone https://github.com/nginxinc/kubernetes-ingress.git --branch v3.2.1
-    - cd kubernetes-ingress/deployments
-    - kubectl apply -f rbac
-    - kubectl apply -f ../examples/shared-examples/default-server-secret/default-server-secret.yaml
-    - kubectl apply -f common
-    - kubectl apply -f deployment
-    - kubectl apply -f service/appprotect-dos-arb-svc.yaml
-    - kubectl apply -f daemon-set/nginx-ingress.yaml
-    - kubectl create -f service/nodeport.yaml
-    - kubectl apply -f service/loadbalancer.yaml
-    - kubectl patch svc nginx-ingress -n nginx-ingress -p '{"spec":{"externalIPs":["http://20.203.206.162/"]}}'
+    - kubectl apply -f {{ role_path }}/files/ingress_files/common/ns-and-sa.yaml
+    - kubectl apply -f {{ role_path }}/files/ingress_files/rbac
+    - kubectl apply -f {{ role_path }}/files/ingress_files/default-server-secret.yaml
+    - kubectl apply -f {{ role_path }}/files/ingress_files/common/nginx-config.yaml
+    - kubectl apply -f {{ role_path }}/files/ingress_files/common/ingress-class.yaml
+    - kubectl apply -f {{ role_path }}/files/ingress_files/common/crds
+    - kubectl apply -f {{ role_path }}/files/ingress_files/deployment/appprotect-dos-arb.yaml
+    - kubectl apply -f {{ role_path }}/files/ingress_files/appprotect-dos-arb-svc.yaml
+    - kubectl apply -f {{ role_path }}/files/ingress_files/deployment/nginx-ingress.yaml
+    - kubectl apply -f {{ role_path }}/files/ingress_files/nginx-ingress.yaml
+    # - kubectl create -f {{ role_path }}/files/ingress_files/nodeport.yaml
+    - kubectl apply -f {{ role_path }}/files/ingress_files/loadbalancer.yaml
+    - kubectl patch svc nginx-ingress -n nginx-ingress -p '{"spec":{"externalIPs":["20.203.206.162"]}}'

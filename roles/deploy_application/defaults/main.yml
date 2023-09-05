@@ -34,8 +34,8 @@ mysql_database: "todo"
 
 sql_secret_name: "mysql-secret"
 
-ingress_host: "boschvm2.switzerlandnorth.cloudapp.azure.com"
+ingress_host: "boschdemoapp.switzerlandnorth.cloudapp.azure.com"
 
-ip_of_VM: "20.203.138.129"
+ip_of_VM: "20.203.136.202"
 docker_image_name: "anatstroe/todo-app"
 docker_image_tag: "latest"

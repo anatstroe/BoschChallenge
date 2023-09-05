@@ -34,6 +34,8 @@
   loop:
   - kubectl taint nodes --all node-role.kubernetes.io/control-plane-
   - kubectl label nodes "{{ node_name }}" haspublicip=true --overwrite
+  # ignore errors
+  ignore_errors: yes
   become: yes
 
 - command: kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml

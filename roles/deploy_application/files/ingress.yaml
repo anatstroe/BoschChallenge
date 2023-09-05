@@ -13,8 +13,8 @@ spec:
         number: 80
   ingressClassName: nginx
   rules:
-  - host: boschvm2.switzerlandnorth.cloudapp.azure.com
-    https:
+  - host: boschdemoapp.switzerlandnorth.cloudapp.azure.com
+    http:
       paths:
       - path: /
         pathType: Prefix

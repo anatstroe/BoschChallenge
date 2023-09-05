@@ -1,7 +1,9 @@
 # Ansible Playbook: Kubernetes Deployment
 
 ## Description
-Create deployment scripts using Ansible to deploy an application to some target servers (or virtual machines). This application contains two services: the main application and a database. The database is a MySQL database. The application is a simple web application that connects to the database and displays some information from the database. The application is packaged as a Docker container. The database is also packaged as a Docker container. The application and database containers are deployed to the target servers using Kubernetes. The application uses ingress controller.
+Ansible Playbook to deploy and configure a Kubernetes cluster on a single node and deploy a simple web application to the cluster.
+Playboook tested on Ubuntu 20.04 LTS
+
 
 ## Prerequisites
 * A virtual machine or server running a Linux distribution that allows inbound traffic on port 80 [tested on Azure VM]
@@ -37,14 +39,15 @@ BoschChallenge/
 │   │   ├── files/
 │   │   |   └── getting-started-app
 │   │   └── tasks
-│   │       └── docker_build.yml
+│   │       └── main.yml
 │   ├── k8s_single_node_cluster/
 │   │   ├── defaults/
 │   │   |   └── main.yml
-│   │   ├── templates//
+│   │   ├── templates/
 │   │   |   └── kubeconfig.j2
 │   │   └── tasks
 │   │       ├── initialize_kubernetes.yml
+│   │       ├── ingress_set_up.yml
 │   │       ├── install_kubernetes.yml
 │   │       └── main.yml
 │   ├── deploy_application/
@@ -60,4 +63,4 @@ BoschChallenge/
 │   │       └── main.yml
 ├── inventory/
 │   └── localhost.yml
-└── my_playbook.yml
+└── playbook.yml
