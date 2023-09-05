@@ -6,10 +6,11 @@
 #     state: present
 #   when: ingress_host is defined
 
-- name: jinja2
+- name: Create ingress yaml file
   template:
     src: "{{ role_path }}/templates/ingress.yaml.j2"
     dest: "{{ role_path }}/files/ingress.yaml.yaml"
 
-- command: kubectl apply -f "{{ role_path }}/files/ingress.yaml.yaml"
+- name: Deploy Ingress for Application
+  command: kubectl apply -f "{{ role_path }}/files/ingress.yaml.yaml"
   become: yes
