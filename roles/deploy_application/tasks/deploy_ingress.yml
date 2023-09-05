@@ -1,7 +1,15 @@
-- name: Deploy Ingress for Application
-  k8s:
-    name: "{{ ingress_name }}"
-    namespace: "{{ namespace }}"
-    definition: "{{ role_path }}/templates/ingress.yaml"
-    state: present
-  when: ingress_host is defined
+# - name: Deploy Ingress for Application
+#   k8s:
+#     name: "{{ ingress_name }}"
+#     namespace: "{{ namespace }}"
+#     definition: "{{ role_path }}/templates/ingress.yaml"
+#     state: present
+#   when: ingress_host is defined
+
+- name: jinja2
+  template:
+    src: "{{ role_path }}/templates/ingress.yaml.j2"
+    dest: "{{ role_path }}/files/ingress.yaml.yaml"
+
+- command: kubectl apply -f "{{ role_path }}/files/ingress.yaml.yaml"
+  become: yes
