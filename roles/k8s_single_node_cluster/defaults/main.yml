@@ -14,5 +14,3 @@ kube_config_file: "{{ kube_config_dir }}/admin.conf"
 temp_directory: "/tmp"
 
 kubernetes_api_server: "https://{{ ansible_default_ipv4.address }}:6443"
-
-node_name: "boschvm2"

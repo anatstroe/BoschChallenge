@@ -25,6 +25,10 @@
   become: yes
   when: kubeadm_init_output.rc == 0
 
+- name: Save the hostname
+  shell: hostname
+  register: node_name
+
 - name: add label to node for public ip and untaint master node
   command: "{{ item }}"
   loop:
