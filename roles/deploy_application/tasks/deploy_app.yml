@@ -14,6 +14,11 @@
     src: "{{ role_path }}/templates/app-deployment.yaml.j2"
     dest: "{{ role_path }}/files/app-deployment.yaml"
 
+- name: jinja2
+  template:
+    src: "{{ role_path }}/templates/mysql-deployment.yaml.j2"
+    dest: "{{ role_path }}/files/mysql-deployment.yaml"
+
 # - name: Deploy Application Deployment
 #   k8s:
 #     name: app-deployment
@@ -24,7 +29,7 @@
 - command: kubectl apply -f "{{ role_path }}/files/app-deployment.yaml"
   become: yes
 
-- command: kubectl apply -f "{{ role_path }}/templates/mysql-deployment.yaml.j2"
+- command: kubectl apply -f "{{ role_path }}/files/mysql-deployment.yaml"
   become: yes
 
 # - name: Deploy MySQL Deployment
