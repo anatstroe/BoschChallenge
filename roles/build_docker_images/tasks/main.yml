@@ -6,7 +6,7 @@
     dockerfile: "{{ dockerfile_path }}"
   become: yes
 
-- name: output docker images
-  command: docker images
-  debug:
-    var: command_output.stdout_lines
+# - name: output docker images
+#   command: docker images
+#   debug:
+#     var: command_output.stdout_lines
