@@ -29,3 +29,6 @@
     group: "{{ ansible_env.USER }}"
   become: yes
   when: kubeadm_init_output.rc == 0
+
+- command: kubectl apply -f https://github.com/weaveworks/weave/releases/download/v2.8.1/weave-daemonset-k8s.yaml
+  become: yes
