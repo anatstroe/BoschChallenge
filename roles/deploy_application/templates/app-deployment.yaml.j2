@@ -16,7 +16,6 @@ spec:
       containers:
         - name: {{ app_name }}
           image: {{ docker_image_name }}:{{ docker_image_tag }}
-          imagePullPolicy: Never
           ports:
             - containerPort: 3000
           env:
