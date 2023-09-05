@@ -36,4 +36,4 @@ sql_secret_name: "mysql-secret"
 
 ingress_host: "172.17.0.1:80"
 
-ip_of_VM = "20.203.138.129"
+ip_of_VM: "20.203.138.129"
