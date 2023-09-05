@@ -1,7 +1,7 @@
 # Ansible Playbook: Kubernetes Deployment
 
 ## Description
-Create deployment scripts using Ansible to deploy an application to some target servers (or virtual machines). This application contains two services: the main application and a database. The database is a MySQL database. The application is a simple web application that connects to the database and displays some information from the database. The application is packaged as a Docker container. The database is also packaged as a Docker container. The application and database containers are deployed to the target servers using Kubernetes.
+Create deployment scripts using Ansible to deploy an application to some target servers (or virtual machines). This application contains two services: the main application and a database. The database is a MySQL database. The application is a simple web application that connects to the database and displays some information from the database. The application is packaged as a Docker container. The database is also packaged as a Docker container. The application and database containers are deployed to the target servers using Kubernetes. The application uses ingress controller.
 
 ## Prerequisites
 * A virtual machine or server running a Linux distribution (Ubuntu, CentOS, etc.)
@@ -11,9 +11,6 @@ Create deployment scripts using Ansible to deploy an application to some target 
     ```bash
     sudo ./ansibleinstall.sh
     ```
-
-
-
 
 
 ## Usage
