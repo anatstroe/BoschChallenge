@@ -7,9 +7,13 @@ Create deployment scripts using Ansible to deploy an application to some target 
 * A virtual machine or server running a Linux distribution (Ubuntu, CentOS, etc.)
 * Ansible installed on the virtual machine or server
     * ```chmod +x ansibleinstall.sh``` to make the script executable
-    * run ```ansibleinstall.sh``` to install Ansible
+    * run ```./ansibleinstall.sh``` to install Ansible
     ```bash
     sudo ./ansibleinstall.sh
+    ```
+    * check ansible installation
+    ```bash
+    ansible --version
     ```
 
 
