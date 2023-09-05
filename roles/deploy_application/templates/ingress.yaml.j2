@@ -7,7 +7,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
-    - host: myapp.local
+    - host: {{ ip_of_VM }}
       http:
         paths:
           - path: /
@@ -16,7 +16,7 @@ spec:
               service:
                 name: {{ app_service_name }}
                 port:
-                  number: 80
+                  number: 3000
 ---
 kind: Service
 apiVersion: v1
