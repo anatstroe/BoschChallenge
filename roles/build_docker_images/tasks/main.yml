@@ -4,6 +4,7 @@
     name: "{{ docker_image_name }}:{{ docker_image_tag }}"
     path: "{{ docker_build_context }}"
     dockerfile: "{{ dockerfile_path }}"
+    source: build
   become: yes
 
 
