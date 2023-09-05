@@ -1,3 +1,44 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ sql_secret_name }}
+type: kubernetes.io/basic-auth
+stringData:
+  password: {{ mysql_root_password }}
+
+---
+
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: {{ persistent_volume_name }}
+  labels:
+    {{ pv_labels.key }}: {{ pv_labels.value }}
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/data"
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ persistent_volume_claim_name }}
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+
+---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -23,7 +64,10 @@ spec:
             name: mysql
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: {{ mysql_root_password }}
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
             - name: MYSQL_DATABASE
               value: {{ mysql_database }}
           volumeMounts:
@@ -35,6 +79,7 @@ spec:
           claimName: {{ persistent_volume_claim_name }}
 
 ---
+
 apiVersion: v1
 kind: Service
 metadata:
@@ -47,30 +92,3 @@ spec:
     - protocol: TCP
       port: 3306
       targetPort: 3306
-
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: {{ persistent_volume_claim_name }}
-spec:
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
----
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: {{ persistent_volume_name }}
-  labels:
-    {{ pv_labels.key }}: {{ pv_labels.value }}
-spec:
-  storageClassName: manual
-  capacity:
-    storage: 20Gi
-  accessModes:
-    - ReadWriteOnce
-  hostPath:
-    path: "/mnt/data"

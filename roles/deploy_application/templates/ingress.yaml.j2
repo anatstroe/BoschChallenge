@@ -1,6 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  namespace: {{ app_namespace }}
   name: "{{ ingress_name }}"
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /

@@ -1,5 +1,5 @@
 ---
-namespace: "todo-app"
+app_namespace: "todo-app"
 
 app_name: "todo-app"
 app_service_name: "todo-app"
@@ -31,5 +31,7 @@ mysql_replica_count: 1
 # to never be hardcoded like this
 mysql_root_password: "Password!123"
 mysql_database: "todo"
+
+sql_secret_name: "mysql-secret"
 
 ingress_host: "172.17.0.1:80"
