@@ -12,5 +12,5 @@
     dest: "{{ role_path }}/files/ingress.yaml.yaml"
 
 - name: Deploy Ingress for Application
-  command: kubectl apply -f "{{ role_path }}/files/ingress.yaml.yaml"
+  command: kubectl apply -f "{{ role_path }}/files/ingress.yaml"
   become: yes
